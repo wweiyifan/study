@@ -1,28 +1,22 @@
 #include <vector>
 #include <iostream>
+#include <unordered_map>
+#include <string>
 using namespace std;
 class Solution
 {
 public:
-        /// @brief
-        /// @param nums
-        /// @param target
-        /// @return
-        vector<int> twoSum(vector<int> &nums, int target)
-        {
-                int a = nums.size();
-                for (int i = 0; i < a; i++)
-                {
-                        for (int j = i + 1; j < a; j++)
-                        {
-                                if (nums[i] + nums[j] == target)
-                                {
-                                        return {nums[i], nums[j]};
-                                }
-                        }
-                }
-                return {};
+      vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int, int> d;
+        for (int i = 0;; ++i) {
+            int x = nums[i];
+            int y = target - x;
+            if (d.count(y) > 0) {
+                return {y , nums[i]};
+            }
+            d[x] = i;
         }
+    }
 };
 int main()
 {
@@ -35,6 +29,7 @@ int main()
     demo2.push_back(5);
     nums =demo2;
     int target =10;
+    std::unordered_map<int, int> d;
     std::vector<int> demo1;
     demo1 = test1.twoSum(nums, target);
     for (int element : demo1){
